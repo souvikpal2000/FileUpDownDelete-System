@@ -44,7 +44,7 @@ app.post("/", upload.single('pic'), async (req,res) => {
         const uploadPic = new Pics({
             picPath: x
         });
-        const picData = await uploadPic.save();
+        await uploadPic.save();
         res.status(201).redirect("/");
     }catch(err){
         res.status(501).redirect("/");
