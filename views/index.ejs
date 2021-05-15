@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container-fluid bg-secondary p-5 text-center text-light">
+        <h1>File Upload/Download/Delete System</h1>
+    </div>
+
+    <div class="container mt-4">
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="mb-3 input-group">
+                <input class="form-control" type="file" name="pic" id="formFile">
+                <input type="submit" class="btn btn-primary" value="Upload File">
+            </div> 
+        </form>
+    </div>
+
+    <div class="container">
+        <% if(data.length > 0) { %>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="imageHeader">Images</th>
+                        <th class="downloadHeader">Download</th>
+                        <th class="deleteHeader">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i<data.length; i++) { %>
+                    <tr>
+                        <td>
+                            <img src="<%= data[i].picPath %>" alt="images" style="width: 100px; height: 100px;">
+                        </td>
+                        <td>
+                            <form action="/download/<%= data[i]._id %>">
+                                <input type="submit" class="btn btn-success" value="Download">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/delete/<%= data[i]._id %>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>
+                        </td>    
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+
+    <footer class="bg-secondary text-light">
+        <p>Copyright &copy;2021, Created by Souvik Pal</p>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</html>
